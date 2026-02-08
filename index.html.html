@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA - Luxury Skincare</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem !important;
+                line-height: 1.1 !important;
+            }
+
+            .hero-description {
+                font-size: 1rem !important;
+            }
+
+            .text-5xl, .text-6xl {
+                font-size: 2.5rem !important;
+            }
+
+            .text-4xl {
+                font-size: 2rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.75rem !important;
+            }
+
+            .text-2xl {
+                font-size: 1.5rem !important;
+            }
+
+            .py-32 {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+
+            .px-6 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            .p-12 {
+                padding: 2rem !important;
+            }
+
+            .gap-16 {
+                gap: 2rem !important;
+            }
+
+            .mb-20 {
+                margin-bottom: 3rem !important;
+            }
+
+            /* Mobile Cart */
+            .cart-slide {
+                max-width: 100% !important;
+            }
+
+            /* Mobile Modal */
+            .glassmorphism {
+                max-width: 95% !important;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Grid fixes */
+            .grid {
+                gap: 1.5rem !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+
+            .text-8xl {
+                font-size: 3rem !important;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1) translateX(0); }
+            50% { transform: scale(1.1) translateX(-20px); }
+            100% { transform: scale(1) translateX(0); }
+        }
+
+        @keyframes blurIn {
+            from {
+                opacity: 0;
+                filter: blur(10px);
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                filter: blur(0);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Hero Animations */
+        .hero-subtitle {
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-title {
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero-description {
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards;
+            opacity: 0;
+        }
+
+        .hero-button {
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+            opacity: 0;
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ken Burns Effect */
+        .ken-burns {
+            animation: kenBurns 20s ease-in-out infinite;
+        }
+
+        /* Gradient Shimmer */
+        .gradient-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        /* Aura Glow */
+        .aura-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aura-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: glow 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Product Card Effects */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+            z-index: 2;
+        }
+
+        .product-card:hover::after {
+            left: 100%;
+        }
+
+        .parallax-image {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .product-card:hover .parallax-image {
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        /* Glassmorphism */
+        .glassmorphism {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Blur In */
+        .blur-in {
+            animation: blurIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Cart Slide */
+        .cart-slide {
+            animation: slideInRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Checkout Animations */
+        .checkout-animate {
+            animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Magnetic Button */
+        .magnetic-button {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .magnetic-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Focus Styles */
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // App State
+        const state = {
+            isMenuOpen: false,
+            selectedProduct: null,
+            cart: [],
+            isCartOpen: false,
+            currentPage: 'home',
+            checkoutStep: 1,
+            mousePosition: { x: 0, y: 0 },
+            checkoutData: {
+                email: '',
+                firstName: '',
+                lastName: '',
+                phone: '',
+                address: '',
+                city: '',
+                zip: '',
+                country: 'United States',
+                cardNumber: '',
+                expiry: '',
+                cvv: ''
+            }
+        };
+
+        // Products Data
+        const products = [
+            {
+                id: 1,
+                name: 'Hydrating Glow Serum',
+                price: 185,
+                image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80',
+                description: 'Luminous hydration with 24K gold and hyaluronic acid',
+                rating: 5,
+                benefits: ['Deep hydration', '24K gold infusion', 'Instant radiance']
+            },
+            {
+                id: 2,
+                name: 'Radiance Night Cream',
+                price: 245,
+                image: 'https://images.unsplash.com/photo-1556228852-80a1e3f91e4e?w=800&q=80',
+                description: 'Age-defying luxury with rare pearl extract',
+                rating: 5,
+                benefits: ['Anti-aging', 'Pearl extract', 'Overnight renewal']
+            },
+            {
+                id: 3,
+                name: 'Celestial Eye Treatment',
+                price: 165,
+                image: 'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&q=80',
+                description: 'Illuminating treatment with diamond peptides',
+                rating: 5,
+                benefits: ['Reduces dark circles', 'Diamond peptides', 'Firms & lifts']
+            },
+            {
+                id: 4,
+                name: 'Velvet Rose Cleanser',
+                price: 125,
+                image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80',
+                description: 'Gentle purification with Bulgarian rose essence',
+                rating: 5,
+                benefits: ['Deep cleansing', 'Bulgarian rose', 'pH balanced']
+            }
+        ];
+
+        // Helper Functions
+        function getCartTotal() {
+            return state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        }
+
+        function getCartCount() {
+            return state.cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        function addToCart(product) {
+            const existing = state.cart.find(item => item.id === product.id);
+            if (existing) {
+                state.cart = state.cart.map(item => 
+                    item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+                );
+            } else {
+                state.cart = [...state.cart, { ...product, quantity: 1 }];
+            }
+            state.selectedProduct = null;
+            render();
+        }
+
+        function updateQuantity(id, change) {
+            state.cart = state.cart.map(item => 
+                item.id === id ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
+            ).filter(item => item.quantity > 0);
+            render();
+        }
+
+        function removeFromCart(id) {
+            state.cart = state.cart.filter(item => item.id !== id);
+            render();
+        }
+
+        function handleCheckout() {
+            state.isCartOpen = false;
+            state.currentPage = 'checkout';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            render();
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            if (state.checkoutStep < 3) {
+                state.checkoutStep++;
+            } else {
+                // جمع بيانات الطلب
+                const orderData = {
+                    name: `${state.checkoutData.firstName} ${state.checkoutData.lastName}`,
+                    phone: state.checkoutData.phone,
+                    email: state.checkoutData.email,
+                    address: state.checkoutData.address,
+                    city: state.checkoutData.city,
+                    zip: state.checkoutData.zip,
+                    country: state.checkoutData.country,
+                    items: state.cart,
+                    total: getCartTotal()
+                };
+
+                // إنشاء رسالة واتساب فخمة
+                const message = createWhatsAppMessage(orderData);
+                
+                // رقم واتساب المتجر
+                const whatsappNumber = '972595230839';
+                
+                // فتح واتساب مع الرسالة
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+                
+                // عرض صفحة النجاح بعد ثانيتين
+                setTimeout(() => {
+                    state.checkoutStep = 4;
+                    render();
+                    
+                    // العودة للصفحة الرئيسية بعد 5 ثواني
+                    setTimeout(() => {
+                        state.cart = [];
+                        state.currentPage = 'home';
+                        state.checkoutStep = 1;
+                        state.checkoutData = {
+                            email: '', firstName: '', lastName: '', phone: '', address: '', city: '', zip: '',
+                            country: 'United States', cardNumber: '', expiry: '', cvv: ''
+                        };
+                        render();
+                    }, 5000);
+                }, 2000);
+            }
+            render();
+        }
+
+        // وظيفة إنشاء رسالة واتساب منسقة بشكل فخم
+        function createWhatsAppMessage(data) {
+            let msg = '✨ *طلب جديد من AURA Luxury Skincare* ✨\n\n';
+            
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n';
+            msg += '👤 *معلومات العميل*\n';
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
+            
+            msg += `📝 *الاسم:* ${data.name}\n`;
+            msg += `📱 *الهاتف:* ${data.phone}\n`;
+            msg += `📧 *البريد:* ${data.email}\n\n`;
+            
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n';
+            msg += '📍 *عنوان الشحن*\n';
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
+            
+            msg += `🏠 *العنوان:* ${data.address}\n`;
+            msg += `🏙️ *المدينة:* ${data.city}\n`;
+            msg += `📮 *الرمز البريدي:* ${data.zip}\n`;
+            msg += `🌍 *البلد:* ${data.country}\n\n`;
+            
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n';
+            msg += '🛍️ *تفاصيل المنتجات*\n';
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
+            
+            data.items.forEach((item, index) => {
+                msg += `${index + 1}. ✨ *${item.name}*\n`;
+                msg += `   💰 السعر الواحد: $${item.price}\n`;
+                msg += `   📦 الكمية: ${item.quantity}\n`;
+                msg += `   💵 المجموع الفرعي: $${(item.price * item.quantity).toFixed(2)}\n\n`;
+            });
+            
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
+            msg += `💎 *المجموع الإجمالي: $${data.total.toFixed(2)}*\n\n`;
+            msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
+            msg += '🙏 شكراً لثقتك في AURA!\n';
+            msg += '⏰ سنتواصل معك قريباً لتأكيد طلبك\n';
+            msg += '💫 نتمنى لك تجربة فاخرة مع منتجاتنا';
+            
+            return msg;
+        }
+
+        // Render Functions
+        function renderStars(rating) {
+            return Array(rating).fill(0).map(() => 
+                `<i data-lucide="star" class="w-4 h-4 fill-white"></i>`
+            ).join('');
+        }
+
+        function renderCheckoutPage() {
+            if (state.checkoutStep === 4) {
+                return `
+                    <div class="min-h-[80vh] flex items-center justify-center px-6">
+                        <div class="text-center checkout-animate max-w-2xl mx-auto">
+                            <div class="w-24 h-24 bg-gradient-to-br from-white to-white/80 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                                <i data-lucide="check" class="w-12 h-12 text-black"></i>
+                            </div>
+                            <h1 class="text-4xl md:text-5xl font-serif mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                                ✨ تم استلام طلبك! ✨
+                            </h1>
+                            <div class="glassmorphism p-8 rounded-2xl mb-6">
+                                <p class="text-white/90 text-lg md:text-xl leading-relaxed mb-4">
+                                    🎉 شكراً لثقتك في AURA Luxury Skincare
+                                </p>
+                                <p class="text-white/80 text-base md:text-lg leading-relaxed">
+                                    💬 سنتواصل معك عبر الواتساب لتأكيد الشحن خلال دقائق
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-center gap-3 text-white/50 text-sm">
+                                <div class="w-2 h-2 bg-white/50 rounded-full animate-pulse"></div>
+                                <p>جاري التحويل للصفحة الرئيسية...</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const stepNames = ['Information', 'Shipping', 'Payment'];
+            
+            return `
+                <div class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="grid lg:grid-cols-2 gap-16">
+                        <!-- Checkout Form -->
+                        <div class="checkout-animate">
+                            <!-- Progress Steps -->
+                            <div class="flex items-center gap-4 mb-12">
+                                ${[1, 2, 3].map((step, index) => `
+                                    <div class="flex items-center gap-3 ${state.checkoutStep >= step ? 'opacity-100' : 'opacity-30'}">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${
+                                            state.checkoutStep >= step ? 'border-white bg-white text-black' : 'border-white/30'
+                                        }">
+                                            ${step}
+                                        </div>
+                                        <span class="text-sm uppercase tracking-wider hidden sm:inline">
+                                            ${stepNames[index]}
+                                        </span>
+                                    </div>
+                                    ${step < 3 ? '<div class="flex-1 h-px bg-white/20"></div>' : ''}
+                                `).join('')}
+                            </div>
+
+                            <form id="checkoutForm" class="space-y-6">
+                                ${state.checkoutStep === 1 ? `
+                                    <h2 class="text-2xl md:text-3xl font-serif mb-8">Contact Information</h2>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        required
+                                        value="${state.checkoutData.email}"
+                                        class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                    />
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <input
+                                            type="text"
+                                            name="firstName"
+                                            placeholder="First Name"
+                                            required
+                                            value="${state.checkoutData.firstName}"
+                                            class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                        />
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            placeholder="Last Name"
+                                            required
+                                            value="${state.checkoutData.lastName}"
+                                            class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                        />
+                                    </div>
+                                ` : ''}
+
+                                ${state.checkoutStep === 2 ? `
+                                    <h2 class="text-2xl md:text-3xl font-serif mb-8">Shipping Address</h2>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="Phone Number (e.g., +972595230839)"
+                                        required
+                                        value="${state.checkoutData.phone}"
+                                        class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        placeholder="Address"
+                                        required
+                                        value="${state.checkoutData.address}"
+                                        class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                    />
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <input
+                                            type="text"
+                                            name="city"
+                                            placeholder="City"
+                                            required
+                                            value="${state.checkoutData.city}"
+                                            class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                        />
+                                        <input
+                                            type="text"
+                                            name="zip"
+                                            placeholder="ZIP Code"
+                                            required
+                                            value="${state.checkoutData.zip}"
+                                            class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                        />
+                                    </div>
+                                    <select
+                                        name="country"
+                                        class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                    >
+                                        <option value="United States">United States</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Palestine">Palestine</option>
+                                        <option value="Jordan">Jordan</option>
+                                        <option value="Egypt">Egypt</option>
+                                        <option value="UAE">UAE</option>
+                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                    </select>
+                                ` : ''}
+
+                                ${state.checkoutStep === 3 ? `
+                                    <h2 class="text-2xl md:text-3xl font-serif mb-8">Payment Details</h2>
+                                    <input
+                                        type="text"
+                                        name="cardNumber"
+                                        placeholder="Card Number"
+                                        required
+                                        value="${state.checkoutData.cardNumber}"
+                                        class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                    />
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <input
+                                            type="text"
+                                            name="expiry"
+                                            placeholder="MM/YY"
+                                            required
+                                            value="${state.checkoutData.expiry}"
+                                            class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                        />
+                                        <input
+                                            type="text"
+                                            name="cvv"
+                                            placeholder="CVV"
+                                            required
+                                            value="${state.checkoutData.cvv}"
+                                            class="w-full bg-white/5 border border-white/20 rounded-lg px-4 md:px-6 py-3 md:py-4 transition-colors text-white text-base"
+                                        />
+                                    </div>
+                                ` : ''}
+
+                                <div class="flex flex-col sm:flex-row gap-4 mt-12">
+                                    ${state.checkoutStep > 1 ? `
+                                        <button
+                                            type="button"
+                                            onclick="state.checkoutStep--; render();"
+                                            class="w-full sm:flex-1 magnetic-button border border-white px-6 py-3 md:px-8 md:py-4 text-sm uppercase tracking-wider hover:bg-white/10 transition-all rounded-lg"
+                                        >
+                                            Back
+                                        </button>
+                                    ` : ''}
+                                    <button
+                                        type="submit"
+                                        class="w-full sm:flex-1 magnetic-button bg-white text-black px-6 py-3 md:px-8 md:py-4 text-sm uppercase tracking-wider hover:bg-white/90 transition-all rounded-lg font-medium"
+                                    >
+                                        ${state.checkoutStep === 3 ? 'Complete Order' : 'Continue'}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="checkout-animate" style="animation-delay: 0.2s">
+                            <div class="glassmorphism rounded-2xl p-8 sticky top-24">
+                                <h2 class="text-2xl font-serif mb-6">Order Summary</h2>
+                                <div class="space-y-4 mb-6 max-h-[400px] overflow-y-auto">
+                                    ${state.cart.map(item => `
+                                        <div class="flex gap-4 pb-4 border-b border-white/10">
+                                            <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg" />
+                                            <div class="flex-1">
+                                                <h3 class="font-light mb-1">${item.name}</h3>
+                                                <p class="text-white/60 text-sm">Qty: ${item.quantity}</p>
+                                            </div>
+                                            <p class="font-light">$${item.price * item.quantity}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="space-y-3 pt-4 border-t border-white/20">
+                                    <div class="flex justify-between text-white/70">
+                                        <span>Subtotal</span>
+                                        <span>$${getCartTotal()}</span>
+                                    </div>
+                                    <div class="flex justify-between text-white/70">
+                                        <span>Shipping</span>
+                                        <span>Free</span>
+                                    </div>
+                                    <div class="flex justify-between text-xl font-light pt-3 border-t border-white/20">
+                                        <span>Total</span>
+                                        <span>$${getCartTotal()}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderHomePage() {
+            return `
+                <!-- Navigation -->
+                <nav class="fixed top-0 w-full z-50 bg-black/80 nav-blur border-b border-white/10">
+                    <div class="max-w-7xl mx-auto px-6 py-4">
+                        <div class="flex items-center justify-between">
+                            <div class="text-2xl font-serif tracking-wider cursor-pointer hover:text-white/70 transition-colors">
+                                AURA
+                            </div>
+                            
+                            <div class="hidden md:flex items-center gap-8">
+                                <a href="#products" class="text-sm uppercase tracking-wider hover:text-white/70 transition-colors">Shop</a>
+                                <a href="#rituals" class="text-sm uppercase tracking-wider hover:text-white/70 transition-colors">Rituals</a>
+                                <a href="#about" class="text-sm uppercase tracking-wider hover:text-white/70 transition-colors">Our Story</a>
+                                <button onclick="state.isCartOpen = true; render();" class="magnetic-button relative p-2 hover:bg-white/10 rounded-full transition-colors">
+                                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                                    ${getCartCount() > 0 ? `
+                                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-white text-black rounded-full text-xs flex items-center justify-center font-medium">
+                                            ${getCartCount()}
+                                        </span>
+                                    ` : ''}
+                                </button>
+                            </div>
+
+                            <button class="md:hidden p-2" onclick="state.isMenuOpen = !state.isMenuOpen; render();">
+                                <i data-lucide="${state.isMenuOpen ? 'x' : 'menu'}"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    ${state.isMenuOpen ? `
+                        <div class="md:hidden bg-black border-t border-white/10 blur-in">
+                            <div class="px-6 py-4 flex flex-col gap-4">
+                                <a href="#products" onclick="state.isMenuOpen = false; render();" class="text-sm uppercase tracking-wider">Shop</a>
+                                <a href="#rituals" onclick="state.isMenuOpen = false; render();" class="text-sm uppercase tracking-wider">Rituals</a>
+                                <a href="#about" onclick="state.isMenuOpen = false; render();" class="text-sm uppercase tracking-wider">Our Story</a>
+                                <button onclick="state.isCartOpen = true; state.isMenuOpen = false; render();" class="text-sm uppercase tracking-wider text-left flex items-center gap-2">
+                                    Cart (${getCartCount()})
+                                </button>
+                            </div>
+                        </div>
+                    ` : ''}
+                </nav>
+
+                <!-- Hero Section -->
+                <section class="relative h-screen flex items-center justify-center overflow-hidden">
+                    <div 
+                        class="absolute inset-0 bg-cover bg-center ken-burns"
+                        style="background-image: url('https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1920&q=80');"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+                        <div class="absolute inset-0 gradient-shimmer"></div>
+                    </div>
+                    
+                    <div class="relative z-10 text-center px-6">
+                        <div class="mb-4 hero-subtitle">
+                            <span class="text-sm uppercase tracking-[0.3em] text-white/80 font-light">
+                                Luxury Skincare
+                            </span>
+                        </div>
+                        <h1 class="text-5xl sm:text-6xl md:text-8xl font-serif mb-6 leading-tight hero-title">
+                            The Art of<br />Radiance
+                        </h1>
+                        <p class="text-base sm:text-lg md:text-xl text-white/90 font-light mb-12 max-w-2xl mx-auto leading-relaxed hero-description">
+                            Experience transformative skincare formulated with rare botanicals
+                            and cutting-edge science. Where luxury meets efficacy.
+                        </p>
+                        <div class="hero-button">
+                            <a href="#products" class="magnetic-button inline-block bg-white text-black px-10 py-4 text-sm uppercase tracking-wider font-medium hover:bg-white/90 transition-all rounded-lg">
+                                Discover Collection
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Product Section -->
+                <section id="products" class="py-32 px-6">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-center mb-20 scroll-animate">
+                            <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif mb-6">Signature Collection</h2>
+                            <p class="text-white/70 text-base md:text-lg max-w-2xl mx-auto px-4">
+                                Curated formulations designed to elevate your skincare ritual
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            ${products.map((product, index) => `
+                                <div 
+                                    class="group cursor-pointer scroll-animate product-card"
+                                    style="animation-delay: ${index * 0.1}s"
+                                    onclick='state.selectedProduct = ${JSON.stringify(product)}; render();'
+                                >
+                                    <div class="relative overflow-hidden rounded-lg mb-4 aspect-square aura-glow">
+                                        <img 
+                                            src="${product.image}"
+                                            alt="${product.name}"
+                                            class="w-full h-full object-cover parallax-image"
+                                        />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                                            <button class="magnetic-button w-full bg-white text-black py-3 text-sm uppercase tracking-wider font-medium rounded-lg">
+                                                Quick View
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-1 mb-2">
+                                        ${renderStars(product.rating)}
+                                    </div>
+                                    <h3 class="text-xl font-light mb-2">${product.name}</h3>
+                                    <p class="text-white/60 text-sm mb-3">${product.description}</p>
+                                    <p class="text-lg font-light">$${product.price}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rituals Section -->
+                <section id="rituals" class="py-32 px-6 bg-white/5">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                            <div class="scroll-animate px-4 md:px-0">
+                                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-6">Age-Defying Rituals</h2>
+                                <p class="text-white/70 text-base md:text-lg leading-relaxed mb-8">
+                                    Our philosophy is simple: skincare should be a moment of mindful luxury. 
+                                    Each formula is crafted with intention, combining ancient wisdom with 
+                                    modern science to deliver transformative results.
+                                </p>
+                                <button class="magnetic-button inline-block border border-white px-8 py-4 text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all rounded-lg">
+                                    Explore Rituals
+                                </button>
+                            </div>
+                            <div class="relative h-[400px] md:h-[600px] rounded-lg overflow-hidden scroll-animate aura-glow mx-4 md:mx-0" style="animation-delay: 0.2s">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80"
+                                    alt="Skincare Ritual"
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="about" class="py-16 md:py-32 px-4 md:px-6">
+                    <div class="max-w-4xl mx-auto text-center scroll-animate">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-6 md:mb-8">Our Philosophy</h2>
+                        <p class="text-white/70 text-lg md:text-xl leading-relaxed mb-6 md:mb-8">
+                            Born from a passion for botanical alchemy and scientific innovation, 
+                            AURA represents the pinnacle of luxury skincare. Every ingredient is 
+                            sourced with integrity, every formula tested with precision.
+                        </p>
+                        <p class="text-white/60 text-base md:text-lg leading-relaxed">
+                            We believe true beauty radiates from within, and our mission is to 
+                            nurture that radiance with products that honor both your skin and the earth.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Quick View Modal -->
+                ${state.selectedProduct ? `
+                    <div 
+                        class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 md:p-6 blur-in"
+                        onclick="state.selectedProduct = null; render();"
+                    >
+                        <div 
+                            class="glassmorphism max-w-4xl w-full rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+                            onclick="event.stopPropagation();"
+                        >
+                            <div class="grid md:grid-cols-2">
+                                <div class="relative h-[300px] md:h-auto aura-glow">
+                                    <img 
+                                        src="${state.selectedProduct.image}"
+                                        alt="${state.selectedProduct.name}"
+                                        class="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div class="p-6 md:p-12">
+                                    <div class="flex gap-1 mb-4">
+                                        ${renderStars(state.selectedProduct.rating)}
+                                    </div>
+                                    <h3 class="text-2xl md:text-4xl font-serif mb-4">${state.selectedProduct.name}</h3>
+                                    <p class="text-white/70 text-base md:text-lg mb-6">${state.selectedProduct.description}</p>
+                                    
+                                    <div class="mb-6">
+                                        <h4 class="text-sm uppercase tracking-wider mb-3 text-white/60">Key Benefits</h4>
+                                        <ul class="space-y-2">
+                                            ${state.selectedProduct.benefits.map(benefit => `
+                                                <li class="flex items-center gap-2 text-white/80 text-sm md:text-base">
+                                                    <div class="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0"></div>
+                                                    ${benefit}
+                                                </li>
+                                            `).join('')}
+                                        </ul>
+                                    </div>
+
+                                    <p class="text-2xl md:text-3xl font-light mb-6 md:mb-8">$${state.selectedProduct.price}</p>
+                                    
+                                    <button 
+                                        onclick='addToCart(${JSON.stringify(state.selectedProduct)})'
+                                        class="magnetic-button w-full bg-white text-black py-3 md:py-4 text-sm uppercase tracking-wider font-medium hover:bg-white/90 transition-colors mb-3 md:mb-4 rounded-lg"
+                                    >
+                                        Add to Cart
+                                    </button>
+                                    <button 
+                                        onclick="state.selectedProduct = null; render();"
+                                        class="magnetic-button w-full border border-white py-3 md:py-4 text-sm uppercase tracking-wider hover:bg-white/10 transition-colors rounded-lg"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+
+                <!-- Cart Sidebar -->
+                ${state.isCartOpen ? `
+                    <div 
+                        class="fixed inset-0 bg-black/80 z-50 flex justify-end"
+                        onclick="state.isCartOpen = false; render();"
+                    >
+                        <div 
+                            class="w-full max-w-md glassmorphism h-full overflow-y-auto cart-slide"
+                            onclick="event.stopPropagation();"
+                        >
+                            <div class="p-8">
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-2xl font-serif">Shopping Cart</h2>
+                                    <button onclick="state.isCartOpen = false; render();" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+                                        <i data-lucide="x" class="w-6 h-6"></i>
+                                    </button>
+                                </div>
+
+                                ${state.cart.length === 0 ? `
+                                    <div class="text-center py-16">
+                                        <i data-lucide="shopping-cart" class="w-16 h-16 mx-auto mb-4 text-white/30"></i>
+                                        <p class="text-white/60">Your cart is empty</p>
+                                    </div>
+                                ` : `
+                                    <div class="space-y-6 mb-8">
+                                        ${state.cart.map(item => `
+                                            <div class="flex gap-4 pb-6 border-b border-white/10">
+                                                <img src="${item.image}" alt="${item.name}" class="w-24 h-24 object-cover rounded-lg" />
+                                                <div class="flex-1">
+                                                    <h3 class="font-light mb-2">${item.name}</h3>
+                                                    <p class="text-white/60 mb-3">$${item.price}</p>
+                                                    <div class="flex items-center gap-3">
+                                                        <button 
+                                                            onclick="updateQuantity(${item.id}, -1)"
+                                                            class="w-8 h-8 border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors"
+                                                        >
+                                                            <i data-lucide="minus" class="w-4 h-4"></i>
+                                                        </button>
+                                                        <span class="w-8 text-center">${item.quantity}</span>
+                                                        <button 
+                                                            onclick="updateQuantity(${item.id}, 1)"
+                                                            class="w-8 h-8 border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors"
+                                                        >
+                                                            <i data-lucide="plus" class="w-4 h-4"></i>
+                                                        </button>
+                                                        <button 
+                                                            onclick="removeFromCart(${item.id})"
+                                                            class="ml-auto p-2 hover:bg-red-500/20 rounded-lg transition-colors"
+                                                        >
+                                                            <i data-lucide="trash-2" class="w-4 h-4 text-red-400"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+
+                                    <div class="space-y-4 mb-8 pt-6 border-t border-white/20">
+                                        <div class="flex justify-between text-white/70">
+                                            <span>Subtotal</span>
+                                            <span>$${getCartTotal()}</span>
+                                        </div>
+                                        <div class="flex justify-between text-white/70">
+                                            <span>Shipping</span>
+                                            <span>Free</span>
+                                        </div>
+                                        <div class="flex justify-between text-2xl font-light pt-4 border-t border-white/20">
+                                            <span>Total</span>
+                                            <span>$${getCartTotal()}</span>
+                                        </div>
+                                    </div>
+
+                                    <button 
+                                        onclick="handleCheckout()"
+                                        class="magnetic-button w-full bg-white text-black py-3 md:py-4 text-sm uppercase tracking-wider font-medium hover:bg-white/90 transition-colors rounded-lg flex items-center justify-center gap-2"
+                                    >
+                                        Proceed to Checkout
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+
+                <!-- Footer -->
+                <footer class="border-t border-white/10 py-12 px-6">
+                    <div class="max-w-7xl mx-auto text-center">
+                        <div class="text-3xl font-serif mb-4">AURA</div>
+                        <p class="text-white/60 text-sm">
+                            © 2024 AURA Skincare. Crafted with intention.
+                        </p>
+                    </div>
+                </footer>
+            `;
+        }
+
+        function render() {
+            const app = document.getElementById('app');
+            
+            if (state.currentPage === 'checkout') {
+                app.innerHTML = `
+                    <div class="min-h-screen bg-[#0a0a0a] text-white">
+                        <nav class="border-b border-white/10 bg-black/80 nav-blur sticky top-0 z-50">
+                            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                                <button 
+                                    onclick="state.currentPage = 'home'; render();"
+                                    class="text-2xl font-serif tracking-wider hover:text-white/70 transition-colors"
+                                >
+                                    AURA
+                                </button>
+                                <div class="text-sm uppercase tracking-wider text-white/60">Secure Checkout</div>
+                            </div>
+                        </nav>
+                        ${renderCheckoutPage()}
+                    </div>
+                `;
+            } else {
+                app.innerHTML = renderHomePage();
+            }
+
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Setup scroll animations
+            setTimeout(() => {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+            }, 100);
+
+            // Setup checkout form
+            const checkoutForm = document.getElementById('checkoutForm');
+            if (checkoutForm) {
+                checkoutForm.onsubmit = handleCheckoutSubmit;
+                
+                // Update state on input change
+                checkoutForm.querySelectorAll('input, select').forEach(input => {
+                    input.addEventListener('input', (e) => {
+                        state.checkoutData[e.target.name] = e.target.value;
+                    });
+                });
+            }
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            render();
+        });
+    </script>
+</body>
+</html>
