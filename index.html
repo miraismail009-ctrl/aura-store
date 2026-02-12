@@ -1,179 +1,1442 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA - Luxury Skincare</title>
+    <title>AURA - العناية الفاخرة بالبشرة</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&family=Cairo:wght@200;300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-        /* التنسيقات الأصلية مع إضافة لمسة فخامة */
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: white; overflow-x: hidden; }
-        .font-serif { font-family: 'Cormorant Garamond', serif; }
-        .glassmorphism { background: rgba(26, 26, 26, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .nav-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-        .product-card:hover .parallax-image { transform: scale(1.1); }
-        .animate-fadeIn { animation: fadeIn 1s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold-primary: #DAA520;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-serif {
+            font-family: 'Amiri', serif;
+        }
+
+        /* ========== ADVANCED ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-2%, -2%); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== HERO SECTION ========== */
+        .luxury-hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: 
+                radial-gradient(ellipse at 30% 40%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: kenBurns 20s ease-in-out infinite alternate;
+        }
+
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) translateX(50px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* ========== NAVIGATION ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(218, 165, 32, 0.1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn-primary {
+            position: relative;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            color: #000;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.5);
+        }
+
+        .btn-outline {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--gold-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--gold-primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--gold-primary);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.3);
+        }
+
+        /* ========== CARDS ========== */
+        .product-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(218, 165, 32, 0.1);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(218, 165, 32, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(218, 165, 32, 0.3);
+            border-color: var(--gold-primary);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        /* ========== SCROLL ANIMATIONS ========== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+            animation: scaleIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+
+        /* ========== CART SIDEBAR ========== */
+        .cart-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 450px;
+            background: var(--bg-card);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 300;
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        /* ========== ADMIN PANEL ========== */
+        .admin-panel {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 500;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .admin-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .admin-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 40px rgba(218, 165, 32, 0.2);
+        }
+
+        /* ========== FORM STYLES ========== */
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(218, 165, 32, 0.2);
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+        }
+
+        /* ========== LOADING ========== */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold-primary);
+            animation: rotate 1s linear infinite;
+        }
+
+        /* ========== BADGE ========== */
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff4444, #ff6666);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+            }
+            
+            .modal-content {
+                margin: 10px;
+                max-height: 95vh;
+            }
+        }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+
+        /* ========== SECTION TITLE ========== */
+        .section-title {
+            font-family: 'Amiri', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        /* ========== STATS CARD ========== */
+        .stat-card {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(255, 215, 0, 0.05));
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.2);
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <h1 class="font-serif text-2xl tracking-wider" style="color: var(--gold-primary);">AURA</h1>
+                    <div class="hidden md:flex gap-6">
+                        <a href="#home" class="nav-link hover:text-[var(--gold-primary)] transition-colors">الرئيسية</a>
+                        <a href="#products" class="nav-link hover:text-[var(--gold-primary)] transition-colors">المنتجات</a>
+                        <a href="#about" class="nav-link hover:text-[var(--gold-primary)] transition-colors">من نحن</a>
+                        <a href="#contact" class="nav-link hover:text-[var(--gold-primary)] transition-colors">تواصل</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative p-2 hover:bg-white/5 rounded-full transition-colors">
+                        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                        <span id="cartBadge" class="badge hidden">0</span>
+                    </button>
+                    <button onclick="toggleAdmin()" class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                        <i data-lucide="settings" class="w-6 h-6"></i>
+                    </button>
+                    <button onclick="toggleMenu()" class="md:hidden p-2 hover:bg-white/5 rounded-full transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
     <div id="app"></div>
 
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-serif">سلة التسوق</h2>
+                <button onclick="toggleCart()" class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <div id="cartContent" class="flex-1 overflow-y-auto"></div>
+            
+            <div id="cartFooter" class="border-t border-white/10 pt-6"></div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel hidden"></div>
+
     <script>
-        // State Management
+        // ========== STATE MANAGEMENT ==========
         const state = {
-            currentPage: 'home',
             cart: [],
+            products: [
+                {
+                    id: 1,
+                    name: 'سيروم الذهب النقي',
+                    price: 189,
+                    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800',
+                    description: 'سيروم فاخر يحتوي على جزيئات الذهب النقي عيار 24 قيراط، يعمل على تجديد البشرة ومنحها إشراقة لا مثيل لها.',
+                    rating: 5,
+                    benefits: ['تجديد خلايا البشرة', 'إشراقة فورية', 'مكافحة الشيخوخة', 'نتائج مرئية خلال أسبوعين']
+                },
+                {
+                    id: 2,
+                    name: 'كريم الكافيار الملكي',
+                    price: 249,
+                    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800',
+                    description: 'كريم فاخر مستخلص من الكافيار الإيراني الأصيل، يوفر ترطيباً عميقاً ويعيد للبشرة شبابها.',
+                    rating: 5,
+                    benefits: ['ترطيب عميق 48 ساعة', 'تقليل التجاعيد', 'شد البشرة', 'نعومة حريرية']
+                },
+                {
+                    id: 3,
+                    name: 'قناع الماس المضيء',
+                    price: 299,
+                    image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800',
+                    description: 'قناع استثنائي مُعزز بمسحوق الماس الدقيق، يمنح البشرة إشراقة فورية ونضارة تدوم.',
+                    rating: 5,
+                    benefits: ['إشراقة فورية', 'توحيد لون البشرة', 'نضارة تدوم 72 ساعة', 'نتائج من أول استخدام']
+                },
+                {
+                    id: 4,
+                    name: 'كريم العين بالبلاتين',
+                    price: 159,
+                    image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800',
+                    description: 'تركيبة متقدمة تحتوي على البلاتين النقي، مصممة خصيصاً للعناية بمنطقة العين الحساسة.',
+                    rating: 5,
+                    benefits: ['إزالة الهالات السوداء', 'تقليل الانتفاخات', 'مكافحة الخطوط الدقيقة', 'نتائج ملحوظة']
+                },
+                {
+                    id: 5,
+                    name: 'مجموعة العناية الملكية',
+                    price: 599,
+                    image: 'https://images.unsplash.com/photo-1591360236480-4ed861025fa1?w=800',
+                    description: 'مجموعة متكاملة من أفخر منتجاتنا، تشمل كل ما تحتاجه بشرتك للعناية المثالية.',
+                    rating: 5,
+                    benefits: ['روتين عناية كامل', 'توفير 30%', 'نتائج احترافية', 'هدية فاخرة']
+                },
+                {
+                    id: 6,
+                    name: 'لوشن الجسم بالعنبر',
+                    price: 179,
+                    image: 'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800',
+                    description: 'لوشن فاخر معطر بخلاصة العنبر الطبيعي، يمنح البشرة ترطيباً فائقاً ورائحة ساحرة.',
+                    rating: 5,
+                    benefits: ['ترطيب فائق', 'عطر فاخر يدوم', 'نعومة حريرية', 'امتصاص سريع']
+                }
+            ],
+            selectedProduct: null,
             isCartOpen: false,
-            checkoutStep: 1,
-            checkoutData: {
-                email: '', firstName: '', lastName: '', phone: '',
-                address: '', city: '', zip: '', country: 'Palestine'
+            isAdminOpen: false,
+            orders: [],
+            stats: {
+                totalOrders: 0,
+                totalRevenue: 0,
+                totalProducts: 6,
+                activeUsers: 0
             }
         };
 
-        const products = [
-            { id: 1, name: 'Hydrating Glow Serum', price: 185, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800' },
-            { id: 2, name: 'Radiance Night Cream', price: 245, image: 'https://images.unsplash.com/photo-1556228852-80a1e3f91e4e?w=800' },
-            { id: 3, name: 'Celestial Eye Treatment', price: 165, image: 'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800' },
-            { id: 4, name: 'Velvet Rose Cleanser', price: 125, image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800' }
-        ];
-
-        // Functions
-        function render() {
-            const app = document.getElementById('app');
-            if (state.currentPage === 'home') {
-                app.innerHTML = renderNavbar() + renderHero() + renderProducts() + renderCart();
-            } else if (state.currentPage === 'checkout') {
-                app.innerHTML = renderNavbar() + renderCheckout() + renderCart();
+        // ========== CART FUNCTIONS ==========
+        function addToCart(product) {
+            const existingItem = state.cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                state.cart.push({ ...product, quantity: 1 });
             }
-            lucide.createIcons();
-            attachEventListeners();
+            
+            updateCart();
+            showNotification('تمت الإضافة إلى السلة بنجاح!', 'success');
         }
 
-        function renderNavbar() {
-            return `
-                <nav class="fixed top-0 w-full z-50 bg-black/80 nav-blur border-b border-white/10">
-                    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                        <div class="text-2xl font-serif tracking-widest cursor-pointer" onclick="state.currentPage='home'; render()">AURA</div>
-                        <div class="flex items-center gap-6">
-                            <a href="https://mirasmail009-ctrl.github.io/aura/" target="_blank" class="text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors border border-white/20 px-3 py-1 rounded">
-                                Admin Panel
-                            </a>
-                            <button onclick="state.isCartOpen = true; render()" class="relative">
-                                <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-                                <span class="absolute -top-2 -right-2 bg-white text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">${state.cart.length}</span>
+        function removeFromCart(productId) {
+            state.cart = state.cart.filter(item => item.id !== productId);
+            updateCart();
+            showNotification('تم الحذف من السلة', 'info');
+        }
+
+        function updateQuantity(productId, change) {
+            const item = state.cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function getCartTotal() {
+            return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+        }
+
+        function updateCart() {
+            const badge = document.getElementById('cartBadge');
+            const cartContent = document.getElementById('cartContent');
+            const cartFooter = document.getElementById('cartFooter');
+            
+            const totalItems = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (totalItems > 0) {
+                badge.classList.remove('hidden');
+                badge.textContent = totalItems;
+            } else {
+                badge.classList.add('hidden');
+            }
+            
+            if (state.cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-center">
+                        <i data-lucide="shopping-bag" class="w-20 h-20 opacity-20 mb-4"></i>
+                        <p class="text-white/60 text-lg">السلة فارغة</p>
+                        <p class="text-white/40 text-sm mt-2">أضف منتجات لتبدأ التسوق</p>
+                    </div>
+                `;
+                cartFooter.innerHTML = '';
+            } else {
+                cartContent.innerHTML = state.cart.map(item => `
+                    <div class="flex gap-4 mb-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[var(--gold-primary)]/30 transition-all">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg" />
+                        <div class="flex-1">
+                            <h3 class="font-medium mb-2">${item.name}</h3>
+                            <p class="text-[var(--gold-primary)] font-bold mb-3">${item.price} ر.س</p>
+                            <div class="flex items-center gap-3">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                                    <i data-lucide="minus" class="w-4 h-4"></i>
+                                </button>
+                                <span class="w-8 text-center font-bold">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="self-start p-2 hover:text-red-400 transition-colors">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                `).join('');
+                
+                cartFooter.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-lg">
+                            <span class="text-white/70">المجموع الفرعي:</span>
+                            <span class="font-bold">${getCartTotal()} ر.س</span>
+                        </div>
+                        <div class="flex justify-between items-center text-white/60">
+                            <span>الشحن:</span>
+                            <span class="text-green-400">مجاني</span>
+                        </div>
+                        <div class="flex justify-between items-center text-2xl font-bold pt-4 border-t border-white/20">
+                            <span>الإجمالي:</span>
+                            <span class="text-[var(--gold-primary)]">${getCartTotal()} ر.س</span>
+                        </div>
+                        <button onclick="checkout()" class="btn-primary w-full">
+                            إتمام الطلب
+                        </button>
+                    </div>
+                `;
+            }
+            
+            lucide.createIcons();
+        }
+
+        function toggleCart() {
+            state.isCartOpen = !state.isCartOpen;
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // ========== CHECKOUT ==========
+        function checkout() {
+            if (state.cart.length === 0) {
+                showNotification('السلة فارغة!', 'error');
+                return;
+            }
+            
+            const orderData = {
+                id: Date.now(),
+                items: [...state.cart],
+                total: getCartTotal(),
+                date: new Date().toLocaleString('ar-SA'),
+                status: 'قيد المعالجة'
+            };
+            
+            state.orders.push(orderData);
+            state.stats.totalOrders++;
+            state.stats.totalRevenue += parseFloat(getCartTotal());
+            
+            // Show checkout form
+            showCheckoutForm(orderData);
+        }
+
+        function showCheckoutForm(orderData) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content w-full max-w-2xl">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-3xl font-serif">إتمام الطلب</h2>
+                            <button onclick="this.closest('.modal-overlay').remove()" class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        
+                        <form onsubmit="submitOrder(event, ${orderData.id})" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block mb-2 text-white/70">الاسم الكامل</label>
+                                    <input type="text" required class="form-input" placeholder="أدخل اسمك الكامل">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 text-white/70">رقم الهاتف</label>
+                                    <input type="tel" required class="form-input" placeholder="05xxxxxxxx">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 text-white/70">البريد الإلكتروني</label>
+                                <input type="email" required class="form-input" placeholder="email@example.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 text-white/70">العنوان</label>
+                                <textarea required class="form-input" rows="3" placeholder="أدخل عنوانك الكامل"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 text-white/70">المدينة</label>
+                                <select required class="form-input">
+                                    <option value="">اختر المدينة</option>
+                                    <option>الرياض</option>
+                                    <option>جدة</option>
+                                    <option>الدمام</option>
+                                    <option>مكة</option>
+                                    <option>المدينة</option>
+                                </select>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                                <h3 class="font-bold mb-4">ملخص الطلب</h3>
+                                <div class="space-y-2 mb-4">
+                                    ${orderData.items.map(item => `
+                                        <div class="flex justify-between text-sm">
+                                            <span>${item.name} × ${item.quantity}</span>
+                                            <span>${(item.price * item.quantity).toFixed(2)} ر.س</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="flex justify-between text-xl font-bold pt-4 border-t border-white/20">
+                                    <span>الإجمالي:</span>
+                                    <span class="text-[var(--gold-primary)]">${orderData.total} ر.س</span>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full">
+                                تأكيد الطلب
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            lucide.createIcons();
+        }
+
+        function submitOrder(e, orderId) {
+            e.preventDefault();
+            
+            // Clear cart
+            state.cart = [];
+            updateCart();
+            toggleCart();
+            
+            // Remove modal
+            e.target.closest('.modal-overlay').remove();
+            
+            // Show success message
+            showNotification('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.', 'success');
+        }
+
+        // ========== ADMIN PANEL ==========
+        function toggleAdmin() {
+            state.isAdminOpen = !state.isAdminOpen;
+            const panel = document.getElementById('adminPanel');
+            
+            if (state.isAdminOpen) {
+                panel.classList.remove('hidden');
+                renderAdminPanel();
+            } else {
+                panel.classList.add('hidden');
+            }
+        }
+
+        function renderAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.innerHTML = `
+                <div class="max-w-7xl mx-auto p-6 min-h-screen">
+                    <div class="flex items-center justify-between mb-8">
+                        <h1 class="text-4xl font-serif text-[var(--gold-primary)]">لوحة التحكم</h1>
+                        <button onclick="toggleAdmin()" class="p-3 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Stats Grid -->
+                    <div class="grid md:grid-cols-4 gap-6 mb-8">
+                        <div class="stat-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="p-3 bg-[var(--gold-primary)]/20 rounded-xl">
+                                    <i data-lucide="shopping-bag" class="w-6 h-6 text-[var(--gold-primary)]"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white/60 text-sm">إجمالي الطلبات</p>
+                                    <p class="text-3xl font-bold">${state.stats.totalOrders}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="p-3 bg-green-500/20 rounded-xl">
+                                    <i data-lucide="dollar-sign" class="w-6 h-6 text-green-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white/60 text-sm">إجمالي الإيرادات</p>
+                                    <p class="text-3xl font-bold">${state.stats.totalRevenue.toFixed(2)} ر.س</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="p-3 bg-blue-500/20 rounded-xl">
+                                    <i data-lucide="package" class="w-6 h-6 text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white/60 text-sm">عدد المنتجات</p>
+                                    <p class="text-3xl font-bold">${state.stats.totalProducts}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="p-3 bg-purple-500/20 rounded-xl">
+                                    <i data-lucide="users" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white/60 text-sm">المستخدمون النشطون</p>
+                                    <p class="text-3xl font-bold">${state.cart.length}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orders Table -->
+                    <div class="admin-card mb-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-serif">آخر الطلبات</h2>
+                            <button onclick="exportOrders()" class="btn-outline text-sm py-2 px-4">
+                                <i data-lucide="download" class="w-4 h-4 inline ml-2"></i>
+                                تصدير
+                            </button>
+                        </div>
+                        
+                        ${state.orders.length === 0 ? `
+                            <div class="text-center py-12">
+                                <i data-lucide="inbox" class="w-16 h-16 mx-auto mb-4 opacity-20"></i>
+                                <p class="text-white/60">لا توجد طلبات بعد</p>
+                            </div>
+                        ` : `
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-white/10">
+                                            <th class="text-right py-4 px-4 text-white/70">رقم الطلب</th>
+                                            <th class="text-right py-4 px-4 text-white/70">التاريخ</th>
+                                            <th class="text-right py-4 px-4 text-white/70">المنتجات</th>
+                                            <th class="text-right py-4 px-4 text-white/70">المبلغ</th>
+                                            <th class="text-right py-4 px-4 text-white/70">الحالة</th>
+                                            <th class="text-right py-4 px-4 text-white/70">إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${state.orders.map(order => `
+                                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                                <td class="py-4 px-4">#${order.id}</td>
+                                                <td class="py-4 px-4 text-white/70">${order.date}</td>
+                                                <td class="py-4 px-4">${order.items.length} منتج</td>
+                                                <td class="py-4 px-4 font-bold text-[var(--gold-primary)]">${order.total} ر.س</td>
+                                                <td class="py-4 px-4">
+                                                    <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm">
+                                                        ${order.status}
+                                                    </span>
+                                                </td>
+                                                <td class="py-4 px-4">
+                                                    <button onclick="viewOrder(${order.id})" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                                                        <i data-lucide="eye" class="w-5 h-5"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        `}
+                    </div>
+                    
+                    <!-- Products Management -->
+                    <div class="admin-card">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-serif">إدارة المنتجات</h2>
+                            <button onclick="addNewProduct()" class="btn-primary text-sm py-2 px-4">
+                                <i data-lucide="plus" class="w-4 h-4 inline ml-2"></i>
+                                إضافة منتج
+                            </button>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            ${state.products.map(product => `
+                                <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:border-[var(--gold-primary)]/30 transition-all">
+                                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold mb-2">${product.name}</h3>
+                                        <p class="text-[var(--gold-primary)] font-bold mb-4">${product.price} ر.س</p>
+                                        <div class="flex gap-2">
+                                            <button onclick="editProduct(${product.id})" class="flex-1 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm">
+                                                <i data-lucide="edit" class="w-4 h-4 inline ml-1"></i>
+                                                تعديل
+                                            </button>
+                                            <button onclick="deleteProduct(${product.id})" class="flex-1 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition-colors text-sm">
+                                                <i data-lucide="trash-2" class="w-4 h-4 inline ml-1"></i>
+                                                حذف
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            lucide.createIcons();
+        }
+
+        function viewOrder(orderId) {
+            const order = state.orders.find(o => o.id === orderId);
+            if (!order) return;
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content w-full max-w-2xl">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-3xl font-serif">تفاصيل الطلب #${order.id}</h2>
+                            <button onclick="this.closest('.modal-overlay').remove()" class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                                <p class="text-white/60 mb-2">التاريخ: ${order.date}</p>
+                                <p class="text-white/60">الحالة: <span class="text-yellow-400">${order.status}</span></p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-bold mb-4">المنتجات:</h3>
+                                ${order.items.map(item => `
+                                    <div class="flex items-center gap-4 mb-4 p-4 bg-white/5 rounded-xl">
+                                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                                        <div class="flex-1">
+                                            <p class="font-medium">${item.name}</p>
+                                            <p class="text-white/60 text-sm">الكمية: ${item.quantity}</p>
+                                        </div>
+                                        <p class="font-bold text-[var(--gold-primary)]">${(item.price * item.quantity).toFixed(2)} ر.س</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                                <div class="flex justify-between text-xl font-bold">
+                                    <span>الإجمالي:</span>
+                                    <span class="text-[var(--gold-primary)]">${order.total} ر.س</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            lucide.createIcons();
+        }
+
+        function exportOrders() {
+            const data = JSON.stringify(state.orders, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'orders.json';
+            a.click();
+            showNotification('تم تصدير الطلبات بنجاح!', 'success');
+        }
+
+        function addNewProduct() {
+            showNotification('هذه الميزة قيد التطوير', 'info');
+        }
+
+        function editProduct(id) {
+            showNotification('هذه الميزة قيد التطوير', 'info');
+        }
+
+        function deleteProduct(id) {
+            if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+                state.products = state.products.filter(p => p.id !== id);
+                state.stats.totalProducts--;
+                renderAdminPanel();
+                showNotification('تم حذف المنتج بنجاح', 'success');
+            }
+        }
+
+        // ========== NOTIFICATION SYSTEM ==========
+        function showNotification(message, type = 'info') {
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = `fixed top-24 left-1/2 -translate-x-1/2 ${colors[type]} text-white px-6 py-4 rounded-xl shadow-2xl z-[1000] min-w-[300px] text-center`;
+            notification.style.animation = 'fadeInDown 0.3s ease';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeInUp 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ========== PRODUCT MODAL ==========
+        function showProduct(product) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content w-full max-w-4xl">
+                    <div class="grid md:grid-cols-2">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                        <div class="p-8">
+                            <button onclick="this.closest('.modal-overlay').remove()" class="absolute top-4 left-4 p-2 bg-black/20 hover:bg-black/40 rounded-full transition-colors">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                            
+                            <div class="flex gap-1 mb-4">
+                                ${[...Array(5)].map((_, i) => `
+                                    <i data-lucide="star" class="w-5 h-5 ${i < product.rating ? 'fill-[var(--gold-primary)] text-[var(--gold-primary)]' : 'text-white/20'}"></i>
+                                `).join('')}
+                            </div>
+                            
+                            <h2 class="text-4xl font-serif mb-4">${product.name}</h2>
+                            <p class="text-3xl font-light mb-6 text-[var(--gold-primary)]">${product.price} ر.س</p>
+                            <p class="text-white/70 mb-8 leading-relaxed">${product.description}</p>
+                            
+                            <div class="mb-8">
+                                <h3 class="text-sm uppercase tracking-wider mb-4 text-white/80">المزايا الرئيسية</h3>
+                                <ul class="space-y-3">
+                                    ${product.benefits.map(benefit => `
+                                        <li class="flex items-center gap-3 text-white/70">
+                                            <i data-lucide="check" class="w-5 h-5 text-[var(--gold-primary)]"></i>
+                                            <span>${benefit}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                            
+                            <button onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')}); this.closest('.modal-overlay').remove();" class="btn-primary w-full">
+                                إضافة إلى السلة
                             </button>
                         </div>
                     </div>
-                </nav>`;
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            lucide.createIcons();
         }
 
-        function renderHero() {
-            return `
-                <section class="pt-32 pb-20 px-6 text-center animate-fadeIn">
-                    <h2 class="text-white/50 uppercase tracking-[0.3em] text-sm mb-4">Timeless Beauty</h2>
-                    <h1 class="text-6xl md:text-8xl font-serif mb-8">Reveal Your Aura</h1>
-                    <p class="max-w-xl mx-auto text-white/70 leading-relaxed mb-10">Experience the pinnacle of skincare luxury with our curated collection of botanical infusions.</p>
-                </section>`;
-        }
-
-        function renderProducts() {
-            return `
-                <section class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-20">
-                    ${products.map(p => `
-                        <div class="product-card group cursor-pointer" onclick="addToCart(${p.id})">
-                            <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-white/5 rounded-sm">
-                                <img src="${p.image}" class="parallax-image w-full h-full object-cover transition-transform duration-700">
-                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <span class="bg-white text-black px-6 py-2 text-xs uppercase tracking-widest">Add to Bag</span>
-                                </div>
+        // ========== RENDER MAIN APP ==========
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <!-- Hero Section -->
+                <section id="home" class="luxury-hero">
+                    <div class="hero-bg"></div>
+                    <div class="particles-container">
+                        ${[...Array(7)].map((_, i) => `
+                            <div class="particle" style="
+                                width: ${3 + Math.random() * 3}px;
+                                height: ${3 + Math.random() * 3}px;
+                                right: ${10 + i * 15}%;
+                                animation-duration: ${15 + Math.random() * 6}s;
+                                animation-delay: ${i * 0.5}s;
+                            "></div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="relative z-10 h-full flex items-center justify-center px-6">
+                        <div class="text-center max-w-4xl">
+                            <div class="mb-8" style="animation: fadeInDown 1s ease 0.3s both;">
+                                <span class="font-serif text-sm tracking-[8px] text-[var(--gold-primary)]">AURA</span>
                             </div>
-                            <h3 class="font-serif text-xl mb-1">${p.name}</h3>
-                            <p class="text-white/50">$${p.price}</p>
-                        </div>
-                    `).join('')}
-                </section>`;
-        }
-
-        function renderCart() {
-            if (!state.isCartOpen) return '';
-            const total = state.cart.reduce((sum, item) => sum + item.price, 0);
-            return `
-                <div class="fixed inset-0 z-[60] flex justify-end">
-                    <div class="absolute inset-0 bg-black/60" onclick="state.isCartOpen=false; render()"></div>
-                    <div class="relative w-full max-w-md bg-[#0f0f0f] h-full p-8 shadow-2xl border-l border-white/10 flex flex-col">
-                        <div class="flex justify-between items-center mb-10">
-                            <h2 class="text-2xl font-serif">Your Bag</h2>
-                            <button onclick="state.isCartOpen=false; render()"><i data-lucide="x" class="w-6 h-6"></i></button>
-                        </div>
-                        <div class="flex-1 overflow-y-auto space-y-6">
-                            ${state.cart.length === 0 ? '<p class="text-white/30 text-center py-20">Your bag is empty.</p>' : 
-                                state.cart.map(item => `
-                                <div class="flex gap-4 border-b border-white/5 pb-4">
-                                    <img src="${item.image}" class="w-20 h-20 object-cover rounded">
-                                    <div class="flex-1">
-                                        <h4 class="text-sm font-medium">${item.name}</h4>
-                                        <p class="text-white/50 text-xs mt-1">$${item.price}</p>
-                                    </div>
-                                </div>`).join('')}
-                        </div>
-                        <div class="pt-8 border-t border-white/10">
-                            <div class="flex justify-between mb-6 text-lg"><span>Total</span><span>$${total}</span></div>
-                            <button onclick="state.currentPage='checkout'; state.isCartOpen=false; render()" class="w-full bg-white text-black py-4 uppercase tracking-widest text-xs font-bold hover:bg-white/90 transition-colors">Checkout Now</button>
+                            
+                            <h1 class="text-5xl md:text-7xl font-serif mb-6" style="animation: fadeInUp 1s ease 0.6s both;">
+                                العناية <span class="text-[var(--gold-primary)]">الفاخرة</span><br/>
+                                بالبشرة
+                            </h1>
+                            
+                            <p class="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto" style="animation: fadeInUp 1s ease 0.9s both;">
+                                اكتشفي عالماً من الفخامة والأناقة مع مستحضراتنا الفريدة المصنوعة من أندر المكونات الطبيعية
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 justify-center" style="animation: fadeInUp 1s ease 1.2s both;">
+                                <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" class="btn-primary">
+                                    اكتشفي المجموعة
+                                </button>
+                                <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="btn-outline">
+                                    معرفة المزيد
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>`;
+                    
+                    <div class="absolute bottom-10 right-1/2 translate-x-1/2" style="animation: float 3s ease-in-out infinite;">
+                        <i data-lucide="chevron-down" class="w-8 h-8 text-[var(--gold-primary)]"></i>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section id="products" class="py-24 px-6">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-center mb-16 scroll-animate">
+                            <h2 class="section-title">مجموعتنا الفاخرة</h2>
+                            <p class="text-white/70 text-lg max-w-2xl mx-auto">
+                                منتجات استثنائية مصممة خصيصاً لتمنح بشرتك التألق والنضارة التي تستحقها
+                            </p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${state.products.map((product, index) => `
+                                <div class="product-card scroll-animate" style="transition-delay: ${index * 0.1}s;">
+                                    <div class="overflow-hidden">
+                                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex gap-1 mb-3">
+                                            ${[...Array(5)].map((_, i) => `
+                                                <i data-lucide="star" class="w-4 h-4 ${i < product.rating ? 'fill-[var(--gold-primary)] text-[var(--gold-primary)]' : 'text-white/20'}"></i>
+                                            `).join('')}
+                                        </div>
+                                        <h3 class="text-xl font-serif mb-2">${product.name}</h3>
+                                        <p class="text-white/60 text-sm mb-4 line-clamp-2">${product.description}</p>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-2xl font-bold text-[var(--gold-primary)]">${product.price} ر.س</span>
+                                            <div class="flex gap-2">
+                                                <button onclick='showProduct(${JSON.stringify(product).replace(/'/g, "\\'")})" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
+                                                    <i data-lucide="eye" class="w-5 h-5"></i>
+                                                </button>
+                                                <button onclick='addToCart(${JSON.stringify(product).replace(/'/g, "\\'")})" class="p-2 bg-[var(--gold-primary)] hover:bg-[var(--gold-light)] text-black rounded-lg transition-colors">
+                                                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="about" class="py-24 px-6 bg-white/5">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-16 items-center">
+                            <div class="scroll-animate">
+                                <h2 class="section-title mb-6">رحلة التميز والفخامة</h2>
+                                <p class="text-white/70 text-lg leading-relaxed mb-6">
+                                    في AURA، نؤمن بأن العناية بالبشرة هي فن يجمع بين العلم والطبيعة. منتجاتنا الفاخرة تجمع بين أندر المكونات الطبيعية والتكنولوجيا المتقدمة.
+                                </p>
+                                <p class="text-white/70 text-lg leading-relaxed mb-8">
+                                    كل منتج من منتجاتنا يحكي قصة من الابتكار والإبداع، مصمم بعناية فائقة لتحقيق أفضل النتائج لبشرتك.
+                                </p>
+                                <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" class="btn-primary">
+                                    اكتشفي مجموعتنا
+                                </button>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-6 scroll-animate">
+                                <div class="stat-card text-center">
+                                    <div class="text-4xl font-bold text-[var(--gold-primary)] mb-2">15+</div>
+                                    <div class="text-white/60">منتج فاخر</div>
+                                </div>
+                                <div class="stat-card text-center">
+                                    <div class="text-4xl font-bold text-[var(--gold-primary)] mb-2">99%</div>
+                                    <div class="text-white/60">رضا العملاء</div>
+                                </div>
+                                <div class="stat-card text-center">
+                                    <div class="text-4xl font-bold text-[var(--gold-primary)] mb-2">100%</div>
+                                    <div class="text-white/60">مكونات طبيعية</div>
+                                </div>
+                                <div class="stat-card text-center">
+                                    <div class="text-4xl font-bold text-[var(--gold-primary)] mb-2">24/7</div>
+                                    <div class="text-white/60">دعم العملاء</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="py-24 px-6">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-16 scroll-animate">
+                            <h2 class="section-title">تواصلي معنا</h2>
+                            <p class="text-white/70 text-lg">نحن هنا للإجابة على جميع استفساراتك</p>
+                        </div>
+                        
+                        <form onsubmit="handleContact(event)" class="space-y-6 scroll-animate">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block mb-2 text-white/70">الاسم</label>
+                                    <input type="text" required class="form-input" placeholder="أدخل اسمك">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 text-white/70">البريد الإلكتروني</label>
+                                    <input type="email" required class="form-input" placeholder="email@example.com">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 text-white/70">الموضوع</label>
+                                <input type="text" required class="form-input" placeholder="موضوع الرسالة">
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 text-white/70">الرسالة</label>
+                                <textarea required class="form-input" rows="5" placeholder="اكتبي رسالتك هنا..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full">
+                                إرسال الرسالة
+                            </button>
+                        </form>
+                        
+                        <div class="grid md:grid-cols-3 gap-8 mt-16 scroll-animate">
+                            <div class="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                                <i data-lucide="mail" class="w-8 h-8 mx-auto mb-4 text-[var(--gold-primary)]"></i>
+                                <h3 class="font-bold mb-2">البريد الإلكتروني</h3>
+                                <p class="text-white/60 text-sm">info@aura-beauty.com</p>
+                            </div>
+                            
+                            <div class="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                                <i data-lucide="phone" class="w-8 h-8 mx-auto mb-4 text-[var(--gold-primary)]"></i>
+                                <h3 class="font-bold mb-2">الهاتف</h3>
+                                <p class="text-white/60 text-sm">+966 50 123 4567</p>
+                            </div>
+                            
+                            <div class="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                                <i data-lucide="map-pin" class="w-8 h-8 mx-auto mb-4 text-[var(--gold-primary)]"></i>
+                                <h3 class="font-bold mb-2">العنوان</h3>
+                                <p class="text-white/60 text-sm">الرياض، المملكة العربية السعودية</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="bg-black/50 border-t border-white/10 py-12 px-6">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid md:grid-cols-4 gap-8 mb-8">
+                            <div>
+                                <h3 class="font-serif text-2xl mb-4 text-[var(--gold-primary)]">AURA</h3>
+                                <p class="text-white/60 text-sm leading-relaxed">
+                                    العناية الفاخرة بالبشرة من أجود المكونات الطبيعية
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold mb-4">روابط سريعة</h4>
+                                <ul class="space-y-2 text-white/60 text-sm">
+                                    <li><a href="#home" class="hover:text-[var(--gold-primary)] transition-colors">الرئيسية</a></li>
+                                    <li><a href="#products" class="hover:text-[var(--gold-primary)] transition-colors">المنتجات</a></li>
+                                    <li><a href="#about" class="hover:text-[var(--gold-primary)] transition-colors">من نحن</a></li>
+                                    <li><a href="#contact" class="hover:text-[var(--gold-primary)] transition-colors">تواصل</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold mb-4">خدمة العملاء</h4>
+                                <ul class="space-y-2 text-white/60 text-sm">
+                                    <li><a href="#" class="hover:text-[var(--gold-primary)] transition-colors">الشحن والتوصيل</a></li>
+                                    <li><a href="#" class="hover:text-[var(--gold-primary)] transition-colors">الإرجاع والاستبدال</a></li>
+                                    <li><a href="#" class="hover:text-[var(--gold-primary)] transition-colors">الأسئلة الشائعة</a></li>
+                                    <li><a href="#" class="hover:text-[var(--gold-primary)] transition-colors">سياسة الخصوصية</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold mb-4">تابعينا</h4>
+                                <div class="flex gap-4">
+                                    <a href="#" class="p-3 bg-white/5 hover:bg-[var(--gold-primary)] hover:text-black rounded-lg transition-all">
+                                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                                    </a>
+                                    <a href="#" class="p-3 bg-white/5 hover:bg-[var(--gold-primary)] hover:text-black rounded-lg transition-all">
+                                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                                    </a>
+                                    <a href="#" class="p-3 bg-white/5 hover:bg-[var(--gold-primary)] hover:text-black rounded-lg transition-all">
+                                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-white/10 pt-8 text-center text-white/60 text-sm">
+                            <p>© 2024 AURA. جميع الحقوق محفوظة.</p>
+                        </div>
+                    </div>
+                </footer>
+            `;
+            
+            lucide.createIcons();
+            initScrollAnimations();
+            initNavbar();
         }
 
-        function renderCheckout() {
-            return `
-                <div class="pt-32 pb-20 max-w-3xl mx-auto px-6 animate-fadeIn">
-                    <h2 class="text-4xl font-serif mb-12 text-center">Shipping Information</h2>
-                    <form id="checkoutForm" class="grid grid-cols-2 gap-4">
-                        <input type="text" name="firstName" placeholder="First Name" required class="bg-white/5 border border-white/10 p-4 rounded focus:border-white/30 outline-none" value="${state.checkoutData.firstName}">
-                        <input type="text" name="lastName" placeholder="Last Name" required class="bg-white/5 border border-white/10 p-4 rounded focus:border-white/30 outline-none" value="${state.checkoutData.lastName}">
-                        <input type="email" name="email" placeholder="Email Address" required class="col-span-2 bg-white/5 border border-white/10 p-4 rounded focus:border-white/30 outline-none" value="${state.checkoutData.email}">
-                        <input type="tel" name="phone" placeholder="WhatsApp Number" required class="col-span-2 bg-white/5 border border-white/10 p-4 rounded focus:border-white/30 outline-none" value="${state.checkoutData.phone}">
-                        <input type="text" name="address" placeholder="Full Address" required class="col-span-2 bg-white/5 border border-white/10 p-4 rounded focus:border-white/30 outline-none" value="${state.checkoutData.address}">
-                        <button type="submit" class="col-span-2 mt-6 bg-white text-black py-4 uppercase tracking-widest text-xs font-bold">Complete Order via WhatsApp</button>
-                    </form>
-                </div>`;
+        // ========== SCROLL ANIMATIONS ==========
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
         }
 
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            state.cart.push(product);
-            state.isCartOpen = true;
+        // ========== NAVBAR SCROLL EFFECT ==========
+        function initNavbar() {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // ========== CONTACT FORM ==========
+        function handleContact(e) {
+            e.preventDefault();
+            showNotification('شكراً لتواصلك معنا! سنرد عليك قريباً.', 'success');
+            e.target.reset();
+        }
+
+        // ========== MOBILE MENU ==========
+        function toggleMenu() {
+            showNotification('القائمة قيد التطوير', 'info');
+        }
+
+        // ========== INITIALIZE ==========
+        document.addEventListener('DOMContentLoaded', () => {
             render();
-        }
-
-        function attachEventListeners() {
-            const form = document.getElementById('checkoutForm');
-            if (form) {
-                form.addEventListener('input', (e) => {
-                    state.checkoutData[e.target.name] = e.target.value;
-                });
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    sendToWhatsApp();
-                });
-            }
-        }
-
-        function sendToWhatsApp() {
-            const total = state.cart.reduce((sum, item) => sum + item.price, 0);
-            const items = state.cart.map(i => `✨ ${i.name} ($${i.price})`).join('%0A');
-            const msg = `*New Order from AURA*%0A━━━━━━━━━━━━━━━%0A*Customer:* ${state.checkoutData.firstName} ${state.checkoutData.lastName}%0A*Phone:* ${state.checkoutData.phone}%0A*Address:* ${state.checkoutData.address}%0A━━━━━━━━━━━━━━━%0A*Items:*%0A${items}%0A━━━━━━━━━━━━━━━%0A*Total: $${total}*`;
-            window.open(`https://wa.me/972595230839?text=${msg}`, '_blank');
-        }
-
-        // Initialize App
-        render();
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
